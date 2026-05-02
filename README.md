@@ -109,18 +109,32 @@ Admins can create projects, assign tasks, and monitor progress, while members ca
 team-task-manager/
 │
 ├── backend/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   └── server.js
+│   ├── models/                # MongoDB schemas (User, Task, Project)
+│   ├── routes/                # API routes (auth, tasks, projects, admin)
+│   ├── middleware/            # JWT authentication middleware
+│   ├── public/                # ✅ Built frontend (IMPORTANT for deployment)
+│   │   ├── index.html
+│   │   └── assets/
+│   │       ├── index-*.js
+│   │       └── index-*.css
+│   ├── .env.example           # Environment variable reference
+│   ├── server.js              # Express server entry point
+│   └── package.json
 │
 ├── frontend/
 │   ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── layout/
+│   │   ├── components/        # Reusable UI components
+│   │   ├── pages/             # Pages (Login, Dashboard, Projects, Tasks)
+│   │   ├── layout/            # Layout (Navbar, Sidebar)
+│   │   ├── services/          # API service layer (fetch calls)
+│   │   └── main.jsx           # App entry
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
 │
-└── README.md
+├── .gitignore
+├── README.md
+└── package.json (optional root config)
 ```
 
 ---
