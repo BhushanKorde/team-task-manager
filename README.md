@@ -7,8 +7,7 @@ Admins can create projects, assign tasks, and monitor progress, while members ca
 
 ## 🌐 Live Demo
 
-👉 Frontend: https://your-frontend-url
-👉 Backend API: https://your-backend-url
+👉 https://team-task-manager-production-d72e.up.railway.app/login
 
 ---
 
