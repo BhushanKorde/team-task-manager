@@ -1,10 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
-/* ── Google Font ── */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@theme {
+  --color-primary: var(--primary-color);
+  --color-secondary: var(--secondary-color);
+  --color-bg: var(--bg-color);
+  --color-card: var(--card-bg);
+  --color-text: var(--text-color);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border-color);
+  --color-overlay: var(--overlay-bg);
+}
 
 /* ── Base layer ── */
 @layer base {
+  :root, [data-theme="light"] {
+    --primary-color: #8b5cf6; /* violet-500 */
+    --secondary-color: #64748b; /* slate-500 */
+    --bg-color: #f8fafc; /* slate-50 */
+    --card-bg: #ffffff;
+    --text-color: #0f172a; /* slate-900 */
+    --text-muted: #64748b; /* slate-500 */
+    --border-color: #e2e8f0; /* slate-200 */
+    --overlay-bg: rgba(255, 255, 255, 0.6);
+  }
+
+  [data-theme="dark"] {
+    --primary-color: #8b5cf6; /* violet-500 */
+    --secondary-color: #94a3b8; /* slate-400 */
+    --bg-color: #020617; /* slate-950 */
+    --card-bg: #0f172a; /* slate-900 */
+    --text-color: #f1f5f9; /* slate-100 */
+    --text-muted: #94a3b8; /* slate-400 */
+    --border-color: #1e293b; /* slate-800 */
+    --overlay-bg: rgba(2, 6, 23, 0.8);
+  }
+
   *,
   *::before,
   *::after {
@@ -20,6 +51,14 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-100 min-h-screen;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }

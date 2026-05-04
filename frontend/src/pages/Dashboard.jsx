@@ -35,29 +35,29 @@ function Dashboard() {
 
   const cards = isAdmin
     ? [
-        { label: "Total Tasks", value: total, grad: "from-violet-600 to-indigo-600", shadow: "shadow-violet-500/15" },
+        { label: "Total Tasks", value: total, grad: "from-primary to-secondary", shadow: "shadow-primary/15" },
         { label: "Completed", value: completed, grad: "from-emerald-600 to-teal-600", shadow: "shadow-emerald-500/15" },
         { label: "Pending", value: pending, grad: "from-amber-500 to-orange-500", shadow: "shadow-amber-500/15" },
         { label: "Overdue", value: overdue, grad: "from-rose-600 to-pink-600", shadow: "shadow-rose-500/15" },
       ]
     : [
-        { label: "Total Tasks", value: total, grad: "from-violet-600 to-indigo-600", shadow: "shadow-violet-500/15" },
+        { label: "Total Tasks", value: total, grad: "from-primary to-secondary", shadow: "shadow-primary/15" },
         { label: "Completed", value: completed, grad: "from-emerald-600 to-teal-600", shadow: "shadow-emerald-500/15" },
         { label: "Pending", value: pending, grad: "from-amber-500 to-orange-500", shadow: "shadow-amber-500/15" },
         { label: "In Progress", value: inProgress, grad: "from-sky-500 to-cyan-500", shadow: "shadow-sky-500/15" },
       ];
 
   const statusColor = (s) =>
-    s === "Completed" ? "bg-emerald-500/10 text-emerald-400"
-    : s === "In Progress" ? "bg-amber-500/10 text-amber-400"
-    : "bg-slate-500/10 text-slate-400";
+    s === "Completed" ? "bg-emerald-500/10 text-emerald-500"
+    : s === "In Progress" ? "bg-amber-500/10 text-amber-500"
+    : "bg-text-muted/10 text-text-muted";
   const dotColor = (s) =>
-    s === "Completed" ? "bg-emerald-400" : s === "In Progress" ? "bg-amber-400" : "bg-slate-500";
+    s === "Completed" ? "bg-emerald-500" : s === "In Progress" ? "bg-amber-500" : "bg-text-muted";
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <svg className="animate-spin w-8 h-8 text-violet-500" viewBox="0 0 24 24" fill="none">
+        <svg className="animate-spin w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
         </svg>
@@ -66,23 +66,23 @@ function Dashboard() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Welcome banner + refresh */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         {!isAdmin ? (
-          <div className="flex-1 bg-gradient-to-r from-violet-600/10 to-indigo-600/10 border border-violet-500/20 rounded-2xl p-6">
-            <h2 className="text-xl font-semibold text-slate-100">
+          <div className="w-full sm:flex-1 bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-2xl p-6 transition-all">
+            <h2 className="text-xl font-semibold text-text">
               Welcome back{user.email ? `, ${user.email.split("@")[0]}` : ""}! 👋
             </h2>
-            <p className="text-sm text-slate-400 mt-1">Here's an overview of your assigned tasks.</p>
+            <p className="text-sm text-text-muted mt-1">Here's an overview of your assigned tasks.</p>
           </div>
         ) : (
-          <div />
+          <div className="flex-1" />
         )}
         <button
           onClick={() => fetchTasks(true)}
           disabled={refreshing}
-          className="ml-4 p-2.5 bg-slate-800/60 border border-slate-700/60 rounded-xl text-slate-400 hover:text-violet-400 hover:border-violet-500/40 transition-all cursor-pointer disabled:opacity-40"
+          className="self-end sm:self-auto p-2.5 bg-card/60 border border-border/60 rounded-xl text-text-muted hover:text-primary hover:border-primary/40 transition-all cursor-pointer disabled:opacity-40"
           title="Refresh data"
         >
           <svg className={`w-5 h-5 ${refreshing ? "animate-spin" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,13 +92,13 @@ function Dashboard() {
       </div>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {cards.map((c) => (
-          <div key={c.label} className={`relative overflow-hidden rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-slate-800/60 p-6 shadow-xl ${c.shadow} transition-transform duration-200 hover:-translate-y-1`}>
-            <div className={`absolute top-0 right-0 w-28 h-28 bg-gradient-to-br ${c.grad} opacity-10 rounded-full -translate-y-1/2 translate-x-1/2`} />
+          <div key={c.label} className={`relative overflow-hidden rounded-2xl bg-card border border-border p-5 md:p-6 shadow-md ${c.shadow} transition-transform duration-200 hover:-translate-y-1`}>
+            <div className={`absolute top-0 right-0 w-24 h-24 md:w-28 md:h-28 bg-gradient-to-br ${c.grad} opacity-10 rounded-full -translate-y-1/2 translate-x-1/2`} />
             <div className="relative">
-              <p className="text-sm font-medium text-slate-400">{c.label}</p>
-              <p className="text-3xl font-bold text-slate-100 mt-2">{c.value}</p>
+              <p className="text-sm font-medium text-text-muted">{c.label}</p>
+              <p className="text-2xl md:text-3xl font-bold text-text mt-2">{c.value}</p>
             </div>
           </div>
         ))}
@@ -106,43 +106,43 @@ function Dashboard() {
 
       {/* Progress bar */}
       {total > 0 && (
-        <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800/60 rounded-2xl shadow-xl p-6">
+        <div className="bg-card border border-border rounded-2xl shadow-md p-5 md:p-6 transition-colors">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-slate-300">Overall Progress</h3>
-            <span className="text-sm font-bold text-violet-400">{progressPct}%</span>
+            <h3 className="text-sm font-semibold text-text">Overall Progress</h3>
+            <span className="text-sm font-bold text-primary">{progressPct}%</span>
           </div>
-          <div className="w-full h-3 bg-slate-800/60 rounded-full overflow-hidden">
+          <div className="w-full h-3 bg-border rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full transition-all duration-700 ease-out"
+              className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-700 ease-out"
               style={{ width: `${progressPct}%` }}
             />
           </div>
-          <p className="text-xs text-slate-500 mt-2">{completed} of {total} tasks completed</p>
+          <p className="text-xs text-text-muted mt-2">{completed} of {total} tasks completed</p>
         </div>
       )}
 
       {/* Task list */}
-      <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800/60 rounded-2xl shadow-xl p-6">
-        <h2 className="text-lg font-semibold text-slate-100 mb-4">{isAdmin ? "All Tasks" : "My Tasks"}</h2>
+      <div className="bg-card border border-border rounded-2xl shadow-md p-5 md:p-6 transition-colors">
+        <h2 className="text-lg font-semibold text-text mb-4">{isAdmin ? "All Tasks" : "My Tasks"}</h2>
         {tasks.length === 0 ? (
-          <p className="text-sm text-slate-500 text-center py-8">
+          <p className="text-sm text-text-muted text-center py-8">
             {isAdmin ? "No tasks created yet." : "No tasks assigned to you yet."}
           </p>
         ) : (
           <div className="space-y-3">
             {tasks.slice(0, 8).map((task) => (
-              <div key={task._id} className="flex items-center justify-between p-4 rounded-xl bg-slate-800/30 border border-slate-700/30 hover:border-slate-700/60 transition-colors">
+              <div key={task._id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-bg border border-border hover:border-border/80 transition-colors">
                 <div className="flex items-center gap-3 min-w-0">
                   <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${dotColor(task.status)}`} />
                   <div className="min-w-0">
-                    <span className="text-sm font-medium text-slate-200 block truncate">{task.title}</span>
-                    <span className="text-xs text-slate-500">
+                    <span className="text-sm font-medium text-text block truncate">{task.title}</span>
+                    <span className="text-xs text-text-muted">
                       {task.projectId?.name || "—"}
                       {isAdmin && task.assignedTo && ` · ${task.assignedTo.name}`}
                     </span>
                   </div>
                 </div>
-                <span className={`text-xs font-medium px-3 py-1 rounded-full shrink-0 ${statusColor(task.status)}`}>{task.status}</span>
+                <span className={`text-xs font-medium px-3 py-1 rounded-full shrink-0 self-start sm:self-auto ${statusColor(task.status)}`}>{task.status}</span>
               </div>
             ))}
           </div>

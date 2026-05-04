@@ -89,7 +89,7 @@ function Login() {
       <div className="relative w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 shadow-2xl shadow-violet-500/25 mb-4">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary shadow-2xl shadow-violet-500/25 mb-4">
             <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
@@ -97,20 +97,20 @@ function Login() {
           <h1 className="text-3xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
             TaskFlow
           </h1>
-          <p className="text-slate-500 mt-1 text-sm">
+          <p className="text-text-muted mt-1 text-sm">
             {isSignup ? "Create your member account" : "Sign in to your account"}
           </p>
         </div>
 
         {/* Role toggle */}
-        <div className="flex gap-2 mb-6 bg-slate-900/60 backdrop-blur-xl border border-slate-800/60 rounded-xl p-1">
+        <div className="flex gap-2 mb-6 bg-card backdrop-blur-xl border border-border rounded-xl p-1">
           <button
             type="button"
             onClick={() => handleModeSwitch("admin")}
             className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
               mode === "admin"
-                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-500/20"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/20"
+                : "text-text-muted hover:text-text"
             }`}
           >
             Login as Admin
@@ -120,8 +120,8 @@ function Login() {
             onClick={() => handleModeSwitch("member")}
             className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
               mode === "member"
-                ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-500/20"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/20"
+                : "text-text-muted hover:text-text"
             }`}
           >
             Login as Member
@@ -131,7 +131,7 @@ function Login() {
         {/* Card */}
         <form
           onSubmit={handleSubmit}
-          className="bg-slate-900/60 backdrop-blur-xl border border-slate-800/60 rounded-2xl p-8 shadow-2xl shadow-black/20 space-y-5"
+          className="bg-card backdrop-blur-xl border border-border rounded-2xl p-8 shadow-2xl shadow-black/20 space-y-5"
         >
           {/* Error */}
           {error && (
@@ -150,7 +150,7 @@ function Login() {
           {/* Name (signup only) */}
           {isSignup && (
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-slate-400 mb-2">
+              <label htmlFor="name" className="block text-sm font-medium text-text-muted mb-2">
                 Full Name
               </label>
               <input
@@ -159,14 +159,14 @@ function Login() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="John Doe"
-                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-violet-500/40 transition-all duration-200"
+                className="w-full px-4 py-3 bg-bg border border-border rounded-xl text-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-primary/40 transition-all duration-200"
               />
             </div>
           )}
 
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-400 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-text-muted mb-2">
               Email Address
             </label>
             <input
@@ -175,13 +175,13 @@ function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={mode === "admin" ? "admin@test.com" : "you@example.com"}
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-violet-500/40 transition-all duration-200"
+              className="w-full px-4 py-3 bg-bg border border-border rounded-xl text-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-primary/40 transition-all duration-200"
             />
           </div>
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-slate-400 mb-2">
+            <label htmlFor="password" className="block text-sm font-medium text-text-muted mb-2">
               Password
             </label>
             <input
@@ -190,7 +190,7 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-violet-500/40 transition-all duration-200"
+              className="w-full px-4 py-3 bg-bg border border-border rounded-xl text-text placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-primary/40 transition-all duration-200"
             />
           </div>
 
@@ -198,7 +198,7 @@ function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-4 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-violet-500/20 hover:shadow-violet-500/30 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            className="w-full py-3 px-4 bg-gradient-to-r from-primary to-secondary hover:from-primary hover:to-secondary text-white font-semibold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             {loading ? (
               <span className="flex items-center justify-center gap-2">
@@ -217,7 +217,7 @@ function Login() {
 
           {/* Toggle signup (member only) */}
           {mode === "member" && (
-            <p className="text-center text-sm text-slate-500">
+            <p className="text-center text-sm text-text-muted">
               {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
               <button
                 type="button"
@@ -226,7 +226,7 @@ function Login() {
                   setError("");
                   setSuccess("");
                 }}
-                className="text-violet-400 hover:text-violet-300 font-medium transition-colors cursor-pointer"
+                className="text-primary hover:text-primary font-medium transition-colors cursor-pointer"
               >
                 {isSignup ? "Sign In" : "Sign Up"}
               </button>
@@ -235,13 +235,13 @@ function Login() {
 
           {/* Admin hint */}
           {mode === "admin" && (
-            <p className="text-center text-xs text-slate-600">
+            <p className="text-center text-xs text-text-muted">
               Default: admin@test.com / admin123
             </p>
           )}
         </form>
 
-        <p className="text-center text-slate-600 text-xs mt-6">
+        <p className="text-center text-text-muted text-xs mt-6">
           Team Task Manager &middot; Secure Login
         </p>
       </div>

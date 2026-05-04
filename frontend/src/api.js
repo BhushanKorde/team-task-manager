@@ -1,5 +1,8 @@
-// ✅ Base URL (works for both local + Railway)
-const API_BASE = "/api";
+// ✅ Dynamic Base URL for local dev and Railway production
+const API_BASE =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5001/api"
+    : "/api";
 
 // ──────────────────────────────────────────────
 // Auth Headers
@@ -23,7 +26,8 @@ async function request(url, options = {}) {
       headers: { ...authHeaders(), ...options.headers },
     });
 
-    const data = await res.json();
+    const text = await res.text();
+    const data = text ? JSON.parse(text) : {};
 
     if (!res.ok) {
       throw new Error(data.message || "Something went wrong");
